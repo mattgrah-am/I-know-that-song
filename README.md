@@ -18,7 +18,7 @@ sei-anz-seifxr06 - Project 4 - [Live Version](tba)
 
 ## Design Brief
 
-todo
+A simple web app that allows the end user to select search for a band, which in turn generates a set of multiple choice questions where the end user is to guess the song whilst a short 30sec music clip is played. If the user guesses correctly the name of the song is highlighted green, if the user selects incorrectly the name of the selected guess is highlighted red, and the name of the correct guess is highlighted in red. 
 
 ### Challenges
 
@@ -35,7 +35,9 @@ todo
 
 ## User Stories
 
-- todo
+- As a music fan I want to be able to select my favourite band and try and guess their songs from a short music clip
+- As a someone that suffers from boredom I want a simple game that lets me pick a band a guess their songs
+- As a band discoverer I want to play a game that lets me hear snippets of their songs while trying to guess the name
 
 ## Database
  
