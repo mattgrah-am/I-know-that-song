@@ -30,8 +30,10 @@ todo
 
 ## Technologies Used
 
-- React
-- Material UI
+- [React](https://reactjs.org/){:target="_blank"}
+- [Material UI](https://mui.com/){:target="_blank"}
+- [Spotify Api](https://developer.spotify.com/){:target="_blank"}
+
 
 ## User Stories
 
