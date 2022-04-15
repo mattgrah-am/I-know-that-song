@@ -46,7 +46,7 @@ todo
 
 ## Bugs
 
-Probably Lots
+- Probably Lots
 
 ## Future Updates
 
@@ -58,7 +58,8 @@ Probably Lots
 ## Style Guide
 
 ### Font
-todo
+
+- [VT323](https://fonts.google.com/specimen/VT323?preview.text=I%20KNOW%20THAT%20SONG!&preview.text_type=custom)
 
 ### Colours
 
