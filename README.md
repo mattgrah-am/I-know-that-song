@@ -56,7 +56,10 @@ Probably Lots
 
 ## Future Updates
 
-todo
+- Ability to sign in with Spotify
+- Ability to search by playlist
+- Point system
+- Leaderboard
 
 ## Style Guide
 
