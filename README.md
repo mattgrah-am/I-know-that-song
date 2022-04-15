@@ -38,8 +38,8 @@ todo
 
 ## User Stories
 
-- As a music fan I want to be able to select my favourite band and try and guess their songs from a short music clip
-- As a someone that suffers from boredom I want a simple game that lets me pick a band a guess their songs
+- As a music fan I want to be able to search my favourite band and try and guess their songs from a short music clip
+- As someone that suffers from boredom I want a simple game that lets me find a band a guess their songs
 - As a band discoverer I want to play a game that lets me hear snippets of their songs while trying to guess the name
 
 ## Database
