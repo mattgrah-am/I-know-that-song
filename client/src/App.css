@@ -1,3 +1,25 @@
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=VT323&display=swap");
+
+/* Font Icons */
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
 .App {
   height: 100vh;
+  display: grid;
+  place-content: center;
+  background: #000 url("./img/background.webp") no-repeat fixed center;
+  background-size: cover;
+}
+
+.logo-font {
+  font-family: "VT323", monospace;
+  font-size: 4.8em;
+  text-align: center;
+  background-color: rgb(0, 0, 0);
+  color: transparent;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.25);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
 }

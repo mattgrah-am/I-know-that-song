@@ -2,7 +2,7 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-import express, { Request, Response } from "express";
+import express, { request, Request, Response } from "express";
 import path from "path";
 
 const PORT =
