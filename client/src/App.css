@@ -27,7 +27,8 @@
 
 .album-art {
   width: 75px;
-  border-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
   margin-right: 1em;
 }
 
@@ -40,4 +41,8 @@
 .artist-search:hover {
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
   background-color: #eee;
+}
+
+.footer {
+  text-align: center;
 }
