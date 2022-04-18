@@ -1,6 +1,13 @@
 import { Button, Container, TextField } from "@mui/material";
+import axios from "axios";
+import { useState, useContext } from "react";
+import { ArtistDataContext } from "../Context/artistDataContext";
 
 export const DetailCatcher = () => {
+  const [player, setPlayer] = useState("Dave Grohl");
+  const [artist, setArtist] = useState("Foo Fighters");
+  const { setArtistData } = useContext<any>(ArtistDataContext);
+
   return (
     <Container>
       <TextField
@@ -10,8 +17,10 @@ export const DetailCatcher = () => {
         id="name"
         label="Enter your name"
         name="name"
-        variant="standard"
+        variant="outlined"
         autoFocus
+        value={player}
+        onChange={(e) => setPlayer(e.target.value)}
       />
       <TextField
         margin="dense"
@@ -19,10 +28,22 @@ export const DetailCatcher = () => {
         fullWidth
         name="artist"
         label="Search Artist / Band"
-        variant="standard"
+        variant="outlined"
         id="arist"
+        value={artist}
+        onChange={(e) => setArtist(e.target.value)}
       />
-      <Button type="submit" variant="contained" sx={{ my: 1, px: 4 }}>
+      <Button
+        variant="contained"
+        sx={{ my: 1, px: 4 }}
+        onClick={() => {
+          axios
+            .get(`http://localhost:3333/api/data/${artist}`)
+            .then((response) => {
+              setArtistData(response.data);
+            });
+        }}
+      >
         PLAY
       </Button>
     </Container>

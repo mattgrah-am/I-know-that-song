@@ -2,13 +2,16 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-import express, { request, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import path from "path";
+import { getArtistData } from "./spotify";
 
 const PORT =
   process.env.PORT || (process.env.NODE_ENV === "production" && 3000) || 3333;
-const app = express();
 
+const cors = require("cors");
+const app = express();
+app.use(cors());
 app.set("trust proxy", 1);
 app.use(express.json()); // support json encoded bodies
 
@@ -23,6 +26,15 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
   });
 }
+
+app.get(
+  "/api/data/:artist",
+  (req: Request<any, any, any, any>, res: Response<any>) => {
+    getArtistData(req.params.artist).then((tracks) => {
+      res.json(tracks);
+    });
+  }
+);
 
 app.listen(+PORT, () => {
   console.log(`Server listening on port ${PORT}`);
