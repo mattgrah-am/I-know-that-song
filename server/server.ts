@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== "production") {
 
 import express, { Request, Response } from "express";
 import path from "path";
-import { getArtistData } from "./spotify";
+import { getArtistData, getArtistList } from "./spotify";
 
 const PORT =
   process.env.PORT || (process.env.NODE_ENV === "production" && 3000) || 3333;
@@ -32,6 +32,15 @@ app.get(
   (req: Request<any, any, any, any>, res: Response<any>) => {
     getArtistData(req.params.artist).then((tracks) => {
       res.json(tracks);
+    });
+  }
+);
+
+app.get(
+  "/api/search/:artist",
+  (req: Request<any, any, any, any>, res: Response<any>) => {
+    getArtistList(req.params.artist).then((artists) => {
+      res.json(artists);
     });
   }
 );

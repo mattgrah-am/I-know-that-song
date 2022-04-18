@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div className="App">
-      <Paper elevation={6} sx={{ minWidth: 640, minHeight: 640, opacity: 0.9 }}>
+      <Paper elevation={6} sx={{ minWidth: 640, opacity: 0.9 }}>
         <Header />
         <ArtistDataContext.Provider value={{ artistData, setArtistData }}>
           {artistData.length > 0 ? <Game /> : <DetailCatcher />}

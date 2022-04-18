@@ -1,3 +1,5 @@
+import { resolve } from "path";
+
 const axios = require("axios");
 const qs = require("qs");
 require("dotenv").config();
@@ -38,11 +40,32 @@ const getAuth = async () => {
   }
 };
 
+export const getArtistList = async (artist: string) => {
+  const access_token = await getAuth();
+  if (artist.length >= 3) {
+    try {
+      const artistIdUrl = `https://api.spotify.com/v1/search?q=${artist}&type=artist&market=US&limit=5`;
+      const response = await axios.get(artistIdUrl, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      const artistList: any = [];
+      response.data.artists.items.forEach((artist) => {
+        artistList.push({ name: artist.name, image: artist.images[0].url });
+      });
+      return artistList;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+};
+
 export const getArtistData = async (artist: string) => {
   const access_token = await getAuth();
 
   try {
-    const artistIdUrl = `https://api.spotify.com/v1/search?q=${artist}&type=artist&market=AU&limit=1`;
+    const artistIdUrl = `https://api.spotify.com/v1/search?q=${artist}&type=artist&market=US&limit=1`;
     const response = await axios.get(artistIdUrl, {
       headers: {
         Authorization: `Bearer ${access_token}`,

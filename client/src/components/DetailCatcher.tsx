@@ -1,12 +1,23 @@
-import { Button, Container, TextField } from "@mui/material";
+import { Card, Container, Paper, TextField } from "@mui/material";
 import axios from "axios";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { ArtistDataContext } from "../Context/artistDataContext";
 
 export const DetailCatcher = () => {
-  const [player, setPlayer] = useState("Dave Grohl");
-  const [artist, setArtist] = useState("Foo Fighters");
+  const [player, setPlayer] = useState("");
+  const [artist, setArtist] = useState<any>("");
+  const [artistList, setArtistList] = useState<string[]>([]);
   const { setArtistData } = useContext<any>(ArtistDataContext);
+
+  const getArtisList = () => {
+    if (artist.length >= 3) {
+      axios
+        .get(`http://localhost:3333/api/search/${artist}`)
+        .then((response) => {
+          setArtistList([...response.data]);
+        });
+    }
+  };
 
   return (
     <Container>
@@ -14,38 +25,34 @@ export const DetailCatcher = () => {
         margin="dense"
         required
         fullWidth
-        id="name"
-        label="Enter your name"
+        id="artist"
+        label="Enter Artist / Band"
         name="name"
         variant="outlined"
         autoFocus
-        value={player}
-        onChange={(e) => setPlayer(e.target.value)}
-      />
-      <TextField
-        margin="dense"
-        required
-        fullWidth
-        name="artist"
-        label="Search Artist / Band"
-        variant="outlined"
-        id="arist"
         value={artist}
-        onChange={(e) => setArtist(e.target.value)}
-      />
-      <Button
-        variant="contained"
-        sx={{ my: 1, px: 4 }}
-        onClick={() => {
-          axios
-            .get(`http://localhost:3333/api/data/${artist}`)
-            .then((response) => {
-              setArtistData(response.data);
-            });
+        onChange={(e) => {
+          setArtist(e.target.value);
+          artist.length >= 3 && getArtisList();
         }}
-      >
-        PLAY
-      </Button>
+      />
+
+      {artistList.map((artist: any) => (
+        <Card
+          variant="outlined"
+          className="artist-search"
+          onClick={() => {
+            axios
+              .get(`http://localhost:3333/api/data/${artist.name}`)
+              .then((response) => {
+                setArtistData(response.data);
+              });
+          }}
+        >
+          <img src={artist.image} alt="" className="album-art" />
+          <h2>{artist.name}</h2>
+        </Card>
+      ))}
     </Container>
   );
 };

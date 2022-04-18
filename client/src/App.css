@@ -22,9 +22,22 @@
   -webkit-background-clip: text;
   -moz-background-clip: text;
   background-clip: text;
+  margin-bottom: 0.5em;
 }
 
 .album-art {
   width: 75px;
-  padding-right: 5px;
+  border-radius: 4px;
+  margin-right: 1em;
+}
+
+.artist-search {
+  display: flex;
+  cursor: pointer;
+  margin: 0.5em 0;
+}
+
+.artist-search:hover {
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
+  background-color: #eee;
 }
