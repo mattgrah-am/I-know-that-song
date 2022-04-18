@@ -1,45 +1,24 @@
-import { Card } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Paper } from "@mui/material";
+import React, { useState } from "react";
 import "./App.css";
 import { DetailCatcher } from "./components/DetailCatcher";
 import { Footer } from "./components/Footer";
+import { Game } from "./components/Game";
 import { Header } from "./components/Header";
-import { getToken, getTracks } from "./components/spotifyApi";
+import { ArtistDataContext } from "./Context/artistDataContext";
 
 function App() {
-  const [songs, setSongs] = useState<any>([]);
-
-  useEffect(() => {
-    const getData = async () => {
-      const accessToken = await getToken();
-      const data = await getTracks(accessToken);
-      console.log(data);
-      data.map((track: any) => {
-        return setSongs((songs: any) => [
-          ...songs,
-          {
-            song: track.name,
-            preview: track.preview_url,
-          },
-        ]);
-      }, []);
-    };
-
-    getData();
-  });
+  const [artistData, setArtistData] = useState<any>([]);
 
   return (
     <div className="App">
-      <Card sx={{ minWidth: 640, minHeight: 640, opacity: 0.85 }}>
+      <Paper elevation={6} sx={{ minWidth: 640, minHeight: 640, opacity: 0.9 }}>
         <Header />
-        <DetailCatcher />
+        <ArtistDataContext.Provider value={{ artistData, setArtistData }}>
+          {artistData.length > 0 ? <Game /> : <DetailCatcher />}
+        </ArtistDataContext.Provider>
         <Footer />
-        {songs.map((track: any) => (
-          <p>
-            Song: {track.song}, Preview: {track.preview}
-          </p>
-        ))}
-      </Card>
+      </Paper>
     </div>
   );
 }
