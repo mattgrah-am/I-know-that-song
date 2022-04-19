@@ -80,14 +80,17 @@ export const getArtistData = async (artist: string) => {
       },
     });
     const artistData: ArtistData[] = [];
+    let trackPreviewCount: number = 0;
+
     res.data.tracks.forEach((track: Tracks) => {
       artistData.push({
         song: track.name,
         preview: track.preview_url,
         image: track.album.images[0].url,
       });
+      if (track.preview_url) trackPreviewCount++;
     });
-    return artistData;
+    return [trackPreviewCount, artistData];
   } catch (error) {
     console.log(error);
   }
