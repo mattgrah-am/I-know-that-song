@@ -1,5 +1,6 @@
 import { Paper } from "@mui/material";
 import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { DetailCatcher } from "./components/DetailCatcher";
 import { Footer } from "./components/Footer";
@@ -12,13 +13,18 @@ function App() {
 
   return (
     <div className="App">
-      <Paper elevation={6} sx={{ minWidth: 640, opacity: 0.9 }}>
-        <Header />
-        <ArtistDataContext.Provider value={{ artistData, setArtistData }}>
-          {artistData.length > 0 ? <Game /> : <DetailCatcher />}
-        </ArtistDataContext.Provider>
-        <Footer />
-      </Paper>
+      <Router>
+        <Paper elevation={6} sx={{ minWidth: 640, opacity: 0.9 }}>
+          <Header />
+          <ArtistDataContext.Provider value={{ artistData, setArtistData }}>
+            <Routes>
+              <Route path="/" element={<DetailCatcher />} />
+              <Route path="/play" element={<Game />} />
+            </Routes>
+          </ArtistDataContext.Provider>
+          <Footer />
+        </Paper>
+      </Router>
     </div>
   );
 }

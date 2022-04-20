@@ -80,15 +80,29 @@ export const getArtistData = async (artist: string) => {
       },
     });
     const artistData: ArtistData[] = [];
+    let trackPreviewCount: number = 0;
+
     res.data.tracks.forEach((track: Tracks) => {
       artistData.push({
         song: track.name,
         preview: track.preview_url,
         image: track.album.images[0].url,
       });
+      if (track.preview_url) trackPreviewCount++;
     });
-    return artistData;
+    return [trackPreviewCount, artistData];
   } catch (error) {
     console.log(error);
   }
 };
+
+// question = [
+//   {
+//     questNum: 1,
+//     options: [song 1, song 2, song 3, song 4],
+//     correct: {
+//       song: song,
+//       preview: mp3 track,
+//       image: album image;
+//     },
+//   },
