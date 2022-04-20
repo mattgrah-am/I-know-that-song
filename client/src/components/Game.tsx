@@ -1,13 +1,25 @@
-import { Card, Container } from "@mui/material";
+import { Card, CircularProgress, Container } from "@mui/material";
 import { useContext } from "react";
 import { ArtistDataContext } from "../Context/artistDataContext";
+import { DetailCatcher } from "./DetailCatcher";
 
 export const Game = () => {
   const { artistData } = useContext<any>(ArtistDataContext);
   if (artistData[1] && artistData[0] < 5)
-    return <p>Not enough playable tracks</p>;
+    return (
+      <>
+        <Container>
+          <p>
+            Not enough playable tracks. Please select another Artist / Band:
+          </p>
+        </Container>
+        <DetailCatcher />
+      </>
+    );
+
   return (
     <Container>
+      {artistData.length === 0 && <CircularProgress />}
       {artistData[1] &&
         artistData[1].map((track: any, index: number) => (
           <Card variant="outlined" className="artist-search" key={index}>
