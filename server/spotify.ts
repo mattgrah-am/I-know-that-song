@@ -1,19 +1,30 @@
-import { resolve } from "path";
-
 const axios = require("axios");
 const qs = require("qs");
 require("dotenv").config();
 
 interface ArtistData {
-  song: string;
-  preview: string;
-  image: string;
+  options: string[];
+  correct: {
+    song: string;
+    preview: string;
+    image: string;
+  };
 }
 
-interface Tracks {
+interface Track {
   name: string;
   preview_url: string;
   album: { images: { url: string } };
+}
+
+interface ArtistList {
+  name: string;
+  image: string;
+}
+
+interface Artist {
+  name: string;
+  images: { url: string }[];
 }
 
 const client_id = process.env.SPOTIFY_API_ID;
@@ -50,8 +61,8 @@ export const getArtistList = async (artist: string) => {
           Authorization: `Bearer ${access_token}`,
         },
       });
-      const artistList: any = [];
-      response.data.artists.items.forEach((artist) => {
+      const artistList: ArtistList[] = [];
+      response.data.artists.items.forEach((artist: Artist) => {
         artistList.push({ name: artist.name, image: artist.images[0].url });
       });
       return artistList;
@@ -81,28 +92,44 @@ export const getArtistData = async (artist: string) => {
     });
     const artistData: ArtistData[] = [];
     let trackPreviewCount: number = 0;
+    let tracks = {};
+    const artistName: string = artist;
 
-    res.data.tracks.forEach((track: Tracks) => {
+    res.data.tracks.forEach((track: Track) => {
       artistData.push({
-        song: track.name,
-        preview: track.preview_url,
-        image: track.album.images[0].url,
+        options: [],
+        correct: {
+          song: track.name,
+          preview: track.preview_url,
+          image: track.album.images[0].url,
+        },
       });
       if (track.preview_url) trackPreviewCount++;
+      tracks[track.name] = track.name;
     });
-    return [trackPreviewCount, artistData];
+    artistData.forEach((track) => {
+      let songList = { ...tracks };
+      let keys = Object.keys(songList);
+
+      if (track.correct.preview) {
+        if (songList.hasOwnProperty(track.correct.song)) {
+          delete songList[track.correct.song];
+          let keysIndex = keys.indexOf(track.correct.song);
+          keys.slice(keysIndex, 1);
+        }
+        track.options.push(track.correct.song);
+        for (let i = 3; i > 0; i--) {
+          let randomOptionsSong = keys[Math.floor(Math.random() * keys.length)];
+          track.options.push(randomOptionsSong);
+          delete songList[randomOptionsSong];
+          let keysIndex = keys.indexOf(track.correct.song);
+          keys.slice(keysIndex, 1);
+        }
+      }
+      songList = { ...tracks };
+    });
+    return [trackPreviewCount, artistData, artistName];
   } catch (error) {
     console.log(error);
   }
 };
-
-// question = [
-//   {
-//     questNum: 1,
-//     options: [song 1, song 2, song 3, song 4],
-//     correct: {
-//       song: song,
-//       preview: mp3 track,
-//       image: album image;
-//     },
-//   },
