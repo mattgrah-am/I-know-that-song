@@ -26,7 +26,7 @@
 }
 
 .album-art {
-  width: 100px;
+  width: 125px;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   margin-right: 1em;
@@ -49,4 +49,49 @@
 
 .link {
   text-decoration: none;
+}
+
+.game-header {
+  display: flex;
+  margin-bottom: 1em;
+}
+
+.game-songs {
+  display: flex;
+  cursor: pointer;
+  padding: 1em;
+  margin: 0.5em;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.game-songs:hover {
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
+  background-color: #eee;
+}
+
+.question-background,
+.correct-background,
+.incorrect-background {
+  display: flex;
+  cursor: pointer;
+  padding: 1em;
+  margin: 0.5em;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.question-background:hover {
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
+  background-color: #eee;
+}
+
+.correct-background {
+  background-color: #2e7d32 !important;
+  color: #fff !important;
+}
+
+.incorrect-background {
+  background-color: #d32f2f !important;
+  color: #fff !important;
 }
