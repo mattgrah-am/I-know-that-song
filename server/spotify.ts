@@ -112,21 +112,17 @@ export const getArtistData = async (artist: string) => {
       let keys = Object.keys(songList);
 
       if (track.correct.preview) {
-        if (songList.hasOwnProperty(track.correct.song)) {
-          delete songList[track.correct.song];
-          let keysIndex = keys.indexOf(track.correct.song);
-          keys.slice(keysIndex, 1);
-        }
+        delete songList[track.correct.song];
+        keys.splice(keys.indexOf(track.correct.song), 1);
+
         track.options.push(track.correct.song);
         for (let i = 3; i > 0; i--) {
           let randomOptionsSong = keys[Math.floor(Math.random() * keys.length)];
           track.options.push(randomOptionsSong);
           delete songList[randomOptionsSong];
-          let keysIndex = keys.indexOf(track.correct.song);
-          keys.slice(keysIndex, 1);
+          keys.splice(keys.indexOf(randomOptionsSong), 1);
         }
       }
-      songList = { ...tracks };
     });
     return [trackPreviewCount, artistData, artistName];
   } catch (error) {

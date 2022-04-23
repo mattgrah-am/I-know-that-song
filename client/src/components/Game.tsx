@@ -1,21 +1,8 @@
 import { Card, CircularProgress, Container } from "@mui/material";
 import { useContext } from "react";
+import ReactAudioPlayer from "react-audio-player";
 import { ArtistDataContext } from "../Context/artistDataContext";
 import { DetailCatcher } from "./DetailCatcher";
-
-interface QuestionData {
-  options: string[];
-  correct: {
-    song: string;
-    preview: string;
-    image: string;
-  };
-}
-interface ArtistData {
-  song: string;
-  preview: string;
-  image: string;
-}
 
 export const Game = () => {
   const { artistData } = useContext<any>(ArtistDataContext);
@@ -33,7 +20,7 @@ export const Game = () => {
 
   return (
     <Container>
-      {artistData[1].length === 0 && <CircularProgress />}
+      {artistData.length === 0 && <CircularProgress />}
       {artistData[1] &&
         artistData[1].map(
           (track: any, index: number) =>
@@ -46,10 +33,10 @@ export const Game = () => {
                     <Card key={index}>{song}</Card>
                   ))}
 
-                  <audio controls>
-                    <source src={track.correct.preview} type="audio/mpeg" />
-                    Your browser does not support the audio element.
-                  </audio>
+                  <ReactAudioPlayer
+                    src={track.correct.preview}
+                    controls={true}
+                  />
                 </div>
               </Card>
             )
