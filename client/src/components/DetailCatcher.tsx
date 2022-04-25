@@ -30,20 +30,21 @@ export const DetailCatcher = () => {
         name="name"
         variant="outlined"
         autoFocus
-        value={artist}
         onChange={(e) => {
           setArtist(e.target.value);
           artist.length >= 3 && getArtisList();
         }}
       />
-      {artist.length < 3 && artist.length >= 1 && <CircularProgress />}
+      {artist.length < 3 && artist.length >= 1 && (
+        <CircularProgress sx={{ padding: "2em 0" }} />
+      )}
       {artist.length >= 3 &&
         artistList.map((artist: any, index: number) => (
           <Link
             to="/play"
             key={index}
-            onClick={() => {
-              axios
+            onClick={async () => {
+              await axios
                 .get(`http://localhost:3333/api/data/${artist.name}`)
                 .then((response) => {
                   setArtistData(response.data);

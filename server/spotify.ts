@@ -38,7 +38,6 @@ const getAuth = async () => {
   try {
     const token_url = "https://accounts.spotify.com/api/token";
     const data = qs.stringify({ grant_type: "client_credentials" });
-
     const response = await axios.post(token_url, data, {
       headers: {
         Authorization: `Basic ${auth_token}`,
@@ -63,7 +62,10 @@ export const getArtistList = async (artist: string) => {
       });
       const artistList: ArtistList[] = [];
       response.data.artists.items.forEach((artist: Artist) => {
-        artistList.push({ name: artist.name, image: artist.images[0].url });
+        artistList.push({
+          name: artist.name,
+          image: artist.images[0]?.url,
+        });
       });
       return artistList;
     } catch (error) {
