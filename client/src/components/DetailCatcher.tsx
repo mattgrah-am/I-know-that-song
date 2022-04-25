@@ -1,4 +1,4 @@
-import { Card, Container, TextField } from "@mui/material";
+import { Card, CircularProgress, Container, TextField } from "@mui/material";
 import axios from "axios";
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
@@ -30,30 +30,33 @@ export const DetailCatcher = () => {
         name="name"
         variant="outlined"
         autoFocus
-        value={artist}
         onChange={(e) => {
           setArtist(e.target.value);
           artist.length >= 3 && getArtisList();
         }}
       />
-      {artistList.map((artist: any, index: number) => (
-        <Link
-          to="/play"
-          key={index}
-          onClick={() => {
-            axios
-              .get(`http://localhost:3333/api/data/${artist.name}`)
-              .then((response) => {
-                setArtistData(response.data);
-              });
-          }}
-        >
-          <Card variant="outlined" className="artist-search">
-            <img src={artist.image} alt="" className="album-art" />
-            <h2>{artist.name}</h2>
-          </Card>
-        </Link>
-      ))}
+      {artist.length < 3 && artist.length >= 1 && (
+        <CircularProgress sx={{ padding: "2em 0" }} />
+      )}
+      {artist.length >= 3 &&
+        artistList.map((artist: any, index: number) => (
+          <Link
+            to="/play"
+            key={index}
+            onClick={async () => {
+              await axios
+                .get(`http://localhost:3333/api/data/${artist.name}`)
+                .then((response) => {
+                  setArtistData(response.data);
+                });
+            }}
+          >
+            <Card variant="outlined" className="artist-search">
+              <img src={artist.image} alt="" className="album-art" />
+              <h2>{artist.name}</h2>
+            </Card>
+          </Link>
+        ))}
     </Container>
   );
 };

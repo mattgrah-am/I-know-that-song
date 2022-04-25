@@ -12,30 +12,32 @@
   min-height: 100vh;
 }
 
-.logo-font {
+.logo {
   font-family: "VT323", monospace;
-  font-size: 4.8em;
+  font-size: 4.2em;
   text-align: center;
-  background-color: rgb(0, 0, 0);
+  background-color: #000;
   color: transparent;
   text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.25);
   -webkit-background-clip: text;
   -moz-background-clip: text;
   background-clip: text;
   margin-bottom: 0.5em;
+  padding: 0 0.25em;
 }
 
 .album-art {
   width: 100px;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  margin-right: 1em;
+  margin-right: 0.5em;
 }
 
 .artist-search {
   display: flex;
   cursor: pointer;
   margin: 0.5em 0;
+}
+.artist {
+  margin: 0.5em 0 0.25em;
 }
 
 .artist-search:hover {
@@ -45,4 +47,89 @@
 
 .footer {
   text-align: center;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.game-header {
+  display: flex;
+  margin-bottom: 1em;
+  opacity: 0.9;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  background-color: rgba(0, 0, 0, 0.87);
+  color: #fff;
+}
+
+.game-songs {
+  display: flex;
+  cursor: pointer;
+  padding: 1em;
+  margin: 0.5em;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.game-songs:hover {
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
+  background-color: #fff;
+}
+
+.guess-round {
+  background-color: #ff3cac;
+  background-image: linear-gradient(
+    225deg,
+    rgb(95, 25, 65) 0%,
+    rgb(75, 50, 100) 50%,
+    rgb(0, 0, 0) 100%
+  );
+  color: #fff;
+  padding: 1em;
+  border-radius: 4px;
+  margin: 0.5em;
+  opacity: 0.9;
+}
+
+.question-background,
+.correct-background,
+.incorrect-background {
+  display: flex;
+  cursor: pointer;
+  padding: 1em;
+  margin: 0.5em;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.question-background:hover {
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
+  background-color: #eee;
+}
+
+.correct-background {
+  background-color: rgba(46, 125, 50, 0.9) !important;
+  color: #fff !important;
+}
+
+.incorrect-background {
+  background-color: rgba(211, 47, 47, 0.9) !important;
+  color: #fff !important;
+}
+
+.footer {
+  margin: 2em 0 1em 0;
+}
+
+.spotify-logo {
+  width: 4em;
+  vertical-align: text-bottom;
+}
+
+p {
+  font-size: 1.1em;
+}
+
+sup {
+  font-size: 0.75em;
 }
