@@ -47,15 +47,12 @@ todo
 ## TODO & Bugs
 
 - stop user to be able to click on an answer after selecting one.
-- add custom volume control
-- add custom play pause control
-- add player countdown from 30sec
 
 ## Future Updates
 
+- Custom Audio Player
 - Ability to sign in with Spotify
 - Ability to search by playlist
-- Points system
 - Leaderboard
 
 ## Style Guide

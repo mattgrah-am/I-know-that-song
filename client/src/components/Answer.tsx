@@ -1,28 +1,37 @@
-import { Card } from "@mui/material";
+import { Button } from "@mui/material";
 import { useContext, useState } from "react";
 import { ArtistDataContext } from "../Context/artistDataContext";
 
 export const Answer = (props: any) => {
-  const { questionPosition, setQuestionPosition } =
+  const { questionPosition, setQuestionPosition, score, setScore } =
     useContext<any>(ArtistDataContext);
   const [questionColor, setQuestionColor] = useState("question-background");
+  const [disabled, setDisabled] = useState(false);
 
   return (
-    <Card
+    <Button
       variant="outlined"
       className={questionColor}
-      sx={{ backgroundColor: questionColor }}
+      disabled={disabled}
+      sx={{
+        backgroundColor: questionColor,
+        fontWeight: "bold",
+      }}
       onClick={() => {
-        props.song === props.correctSong
-          ? setQuestionColor("correct-background")
-          : setQuestionColor("incorrect-background");
+        props.song === props.correctSong && setScore(score + 1);
+        props.song === props.correctSong &&
+          setQuestionColor("correct-background");
 
+        props.song !== props.correctSong &&
+          setQuestionColor("incorrect-background");
+
+        setDisabled(true);
         setTimeout(() => {
           setQuestionPosition(questionPosition + 1);
-        }, 3000);
+        }, 2000);
       }}
     >
       {props.song}
-    </Card>
+    </Button>
   );
 };

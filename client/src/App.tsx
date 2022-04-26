@@ -17,7 +17,9 @@ const theme = createTheme({
 
 function App() {
   const [artistData, setArtistData] = useState<any>([]);
-  const [questionPosition, setQuestionPosition] = useState(0);
+  const [questionPosition, setQuestionPosition] = useState<number>(0);
+  const [score, setScore] = useState<number>(0);
+  const [artist, setArtist] = useState<any>("");
 
   return (
     <div className="App">
@@ -34,6 +36,10 @@ function App() {
                 setArtistData,
                 questionPosition,
                 setQuestionPosition,
+                score,
+                setScore,
+                artist,
+                setArtist,
               }}
             >
               <Routes>
