@@ -1,23 +1,11 @@
-import { Container, Link as MaterialLink } from "@mui/material";
-import { useContext } from "react";
-import { Link as RouterLink } from "react-router-dom";
-import { ArtistDataContext } from "../Context/artistDataContext";
+import { Container } from "@mui/material";
+import { DetailCatcher } from "./DetailCatcher";
 
 export const GameOver = () => {
-  const { setQuestionPosition } = useContext<any>(ArtistDataContext);
-
   return (
     <Container>
-      <h3>
-        Game over.{" "}
-        <MaterialLink
-          component={RouterLink}
-          to="/"
-          onClick={setQuestionPosition(0)}
-        >
-          Play again?
-        </MaterialLink>
-      </h3>
+      <h3> Game over. Play again?</h3>
+      <DetailCatcher />
     </Container>
   );
 };

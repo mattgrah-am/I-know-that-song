@@ -12,8 +12,10 @@ export const Game = () => {
 
   return (
     <Container>
-      {artistData.length === 0 && <CircularProgress />}
-      {questionPosition === artistData[0] ? <GameOver /> : <Questions />}
+      <>
+        {artistData.length === 0 && <CircularProgress />}
+        {questionPosition === artistData[0] ? <GameOver /> : <Questions />}
+      </>
     </Container>
   );
 };

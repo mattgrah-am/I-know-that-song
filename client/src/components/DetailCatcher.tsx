@@ -7,7 +7,8 @@ import { ArtistDataContext } from "../Context/artistDataContext";
 export const DetailCatcher = () => {
   const [artist, setArtist] = useState<any>("");
   const [artistList, setArtistList] = useState<string[]>([]);
-  const { setArtistData } = useContext<any>(ArtistDataContext);
+  const { setArtistData, setQuestionPosition } =
+    useContext<any>(ArtistDataContext);
 
   const getArtisList = () => {
     if (artist.length >= 3) {
@@ -44,6 +45,7 @@ export const DetailCatcher = () => {
             to="/play"
             key={index}
             onClick={async () => {
+              setQuestionPosition(0);
               await axios
                 .get(`http://localhost:3333/api/data/${artist.name}`)
                 .then((response) => {
