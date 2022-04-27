@@ -9,9 +9,9 @@ export const GameOver = () => {
   return (
     <Container>
       <h3>
-        {" "}
-        You scored {score} out of {artistData[0]}. Play again?
+        You scored {score} out of {artistData[0]} for {artistData[2]}.
       </h3>
+      <p>Play again?</p>
       <DetailCatcher />
     </Container>
   );

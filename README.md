@@ -1,6 +1,6 @@
 # I Know That Song!
 
-sei-anz-seifxr06 - Project 4 - [Live Version](tba)
+sei-anz-seifxr06 - Project 4 - [Live Version](https://iknowthatsong.mattgrah.am/)
 
 ## Design Brief
 
@@ -29,16 +29,13 @@ todo
 - [Material UI](https://mui.com/)
 - [Node JS](https://nodejs.org/en/)
 - [Spotify Api](https://developer.spotify.com/)
+- [Axios](https://axios-http.com/)
 
 ## User Stories
 
 - As a music fan I want to be able to search my favourite band and try and guess their songs from a short music clip
 - As someone that suffers from boredom I want a simple game that lets me find a band a guess their songs
 - As a band discoverer I want to play a game that lets me hear snippets of their songs while trying to guess the name
-
-## Database
-
-todo
 
 ## Wireframe Design
 
@@ -55,12 +52,16 @@ todo
 - Ability to search by playlist
 - Leaderboard
 - Mobile Compatibility
+- Add suggested artist / band at the end of a game
 
 ## Style Guide
+
+Most of the styles are using Material UI's defaults.
 
 ### Font
 
 - [VT323](https://fonts.google.com/specimen/VT323?preview.text=I%20KNOW%20THAT%20SONG!&preview.text_type=custom)
+- [Roboto](https://fonts.google.com/specimen/Roboto?preview.text=I%20KNOW%20THAT%20SONG!&preview.text_type=custom)
 
 ### Colours
 
