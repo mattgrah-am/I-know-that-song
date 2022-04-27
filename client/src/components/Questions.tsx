@@ -1,12 +1,18 @@
 import { ArtistDataContext } from "../Context/artistDataContext";
-import { Answer } from "./Answer";
-import { Card, CircularProgress, Stack } from "@mui/material";
-import { useContext } from "react";
+import { Button, Card, CircularProgress, Stack } from "@mui/material";
+import { useContext, useState } from "react";
 import { AudioPlayer } from "./AudioPlayer";
 
 export const Questions = () => {
-  const { artist, artistData, questionPosition } =
-    useContext<any>(ArtistDataContext);
+  const {
+    artist,
+    artistData,
+    questionPosition,
+    setQuestionPosition,
+    score,
+    setScore,
+  } = useContext<any>(ArtistDataContext);
+  const [disabled, setDisabled] = useState(false);
 
   if (artist !== artistData[2]) {
     return <CircularProgress />;
@@ -32,19 +38,40 @@ export const Questions = () => {
           <h2 className="guess-round">
             GUESS THE SONG:{" "}
             <span className="round">
-              {" "}
               Round {questionPosition + 1} / {artistData[0]}
             </span>
           </h2>
           <Stack spacing={1} sx={{ margin: "0.75em" }}>
             {artistData[1][questionPosition].options.map(
               (song: string, index: number) => (
-                <Answer
+                <Button
                   key={index}
-                  song={song}
-                  correctSong={artistData[1][questionPosition].correct.song}
-                  questionPosition={questionPosition}
-                />
+                  className="question-background"
+                  variant="outlined"
+                  disabled={disabled}
+                  onClick={(e) => {
+                    const correctSong =
+                      artistData[1][questionPosition].correct.song;
+                    song === correctSong && setScore(score + 1);
+                    song === correctSong &&
+                      (e.currentTarget.style.backgroundColor =
+                        "rgba(46, 125, 50, 0.9) ") &&
+                      (e.currentTarget.style.color = "#fff");
+
+                    song !== correctSong &&
+                      (e.currentTarget.style.backgroundColor =
+                        "rgba(211, 47, 47, 0.9) ") &&
+                      (e.currentTarget.style.color = "#fff");
+
+                    setDisabled(true);
+                    setTimeout(() => {
+                      setQuestionPosition(questionPosition + 1);
+                      setDisabled(false);
+                    }, 2000);
+                  }}
+                >
+                  {song}
+                </Button>
               )
             )}
           </Stack>

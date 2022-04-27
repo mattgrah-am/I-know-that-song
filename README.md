@@ -46,7 +46,8 @@ todo
 
 ## TODO & Bugs
 
-- stop user to be able to click on an answer after selecting one.
+- add an about modal in the footer to talk about the app and how it was made.
+- add a pause between each track
 
 ## Future Updates
 

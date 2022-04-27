@@ -111,16 +111,6 @@
   color: rgb(0, 0, 0);
 }
 
-.correct-background {
-  background-color: rgba(46, 125, 50, 0.9) !important;
-  color: #fff !important;
-}
-
-.incorrect-background {
-  background-color: rgba(211, 47, 47, 0.9) !important;
-  color: #fff !important;
-}
-
 .footer {
   margin: 2em 0 1em 0;
 }
