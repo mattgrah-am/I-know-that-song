@@ -1,14 +1,25 @@
 import { ArtistDataContext } from "../Context/artistDataContext";
-import { Answer } from "./Answer";
-import { Card } from "@mui/material";
-import { useContext } from "react";
+import { Button, Card, CircularProgress, Stack } from "@mui/material";
+import { useContext, useState } from "react";
 import { AudioPlayer } from "./AudioPlayer";
 
 export const Questions = () => {
-  const { artistData, questionPosition } = useContext<any>(ArtistDataContext);
+  const {
+    artist,
+    artistData,
+    questionPosition,
+    setQuestionPosition,
+    score,
+    setScore,
+  } = useContext<any>(ArtistDataContext);
+  const [disabled, setDisabled] = useState(false);
+
+  if (artist !== artistData[2]) {
+    return <CircularProgress />;
+  }
 
   return (
-    artistData[1] &&
+    artist === artistData[2] &&
     artistData[1][questionPosition].correct.preview && (
       <Card variant="outlined" key={questionPosition}>
         <div className="game-header">
@@ -25,18 +36,45 @@ export const Questions = () => {
 
         <div>
           <h2 className="guess-round">
-            Guess the Song: Round {questionPosition + 1} / {artistData[0]}
+            GUESS THE SONG:{" "}
+            <span className="round">
+              Round {questionPosition + 1} / {artistData[0]}
+            </span>
           </h2>
-          {artistData[1][questionPosition].options.map(
-            (song: string, index: number) => (
-              <Answer
-                key={index}
-                song={song}
-                correctSong={artistData[1][questionPosition].correct.song}
-                questionPosition={questionPosition}
-              />
-            )
-          )}
+          <Stack spacing={1} sx={{ margin: "0.75em" }}>
+            {artistData[1][questionPosition].options.map(
+              (song: string, index: number) => (
+                <Button
+                  key={index}
+                  className="question-background"
+                  variant="outlined"
+                  disabled={disabled}
+                  onClick={(e) => {
+                    const correctSong =
+                      artistData[1][questionPosition].correct.song;
+                    song === correctSong && setScore(score + 1);
+                    song === correctSong &&
+                      (e.currentTarget.style.backgroundColor =
+                        "rgba(46, 125, 50, 0.9) ") &&
+                      (e.currentTarget.style.color = "#fff");
+
+                    song !== correctSong &&
+                      (e.currentTarget.style.backgroundColor =
+                        "rgba(211, 47, 47, 0.9) ") &&
+                      (e.currentTarget.style.color = "#fff");
+
+                    setDisabled(true);
+                    setTimeout(() => {
+                      setQuestionPosition(questionPosition + 1);
+                      setDisabled(false);
+                    }, 2000);
+                  }}
+                >
+                  {song}
+                </Button>
+              )
+            )}
+          </Stack>
         </div>
       </Card>
     )

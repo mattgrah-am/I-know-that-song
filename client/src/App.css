@@ -14,7 +14,7 @@
 
 .logo {
   font-family: "VT323", monospace;
-  font-size: 4.2em;
+  font-size: 4em;
   text-align: center;
   background-color: #000;
   color: transparent;
@@ -33,16 +33,27 @@
 
 .artist-search {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   cursor: pointer;
   margin: 0.5em 0;
-}
-.artist {
-  margin: 0.5em 0 0.25em;
 }
 
 .artist-search:hover {
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
   background-color: #eee;
+}
+
+.artist {
+  margin: 0.5em 0 0.25em;
+}
+
+.artist-search-name {
+  flex-grow: 1;
+  font-size: 1.25em;
+  font-weight: bold;
+  margin: 0 0 0 0.5em;
+  text-align: left;
 }
 
 .footer {
@@ -85,36 +96,19 @@
     rgb(0, 0, 0) 100%
   );
   color: #fff;
-  padding: 1em;
+  padding: 0.5em;
   border-radius: 4px;
-  margin: 0.5em;
-  opacity: 0.9;
+  margin: 0em 0.5em;
 }
 
-.question-background,
-.correct-background,
-.incorrect-background {
-  display: flex;
-  cursor: pointer;
-  padding: 1em;
-  margin: 0.5em;
-  font-size: 1.25em;
-  font-weight: bold;
+.round {
+  font-weight: normal;
 }
 
 .question-background:hover {
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
-  background-color: #eee;
-}
-
-.correct-background {
-  background-color: rgba(46, 125, 50, 0.9) !important;
-  color: #fff !important;
-}
-
-.incorrect-background {
-  background-color: rgba(211, 47, 47, 0.9) !important;
-  color: #fff !important;
+  background-color: #eee !important;
+  color: rgb(0, 0, 0);
 }
 
 .footer {
