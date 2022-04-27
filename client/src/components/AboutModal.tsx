@@ -33,7 +33,7 @@ export const AboutModal = () => {
   const mattsLinks = [
     {
       name: "Website",
-      url: "https://mattgrah.am",
+      url: "https://www.mattgrah.am",
     },
     {
       name: "Github",
@@ -51,9 +51,11 @@ export const AboutModal = () => {
 
   return (
     <div>
-      <Link underline="hover" onClick={handleOpen}>
-        About this site.
-      </Link>
+      <small>
+        <Link underline="hover" onClick={handleOpen}>
+          Learn more about this web app.
+        </Link>
+      </small>
 
       <Modal
         open={open}
@@ -88,7 +90,7 @@ export const AboutModal = () => {
             >
               General Assembly's Software Engineering Immersive Online (Flex)
             </Link>
-            's final project. It uses{" "}
+            course's final project. It uses{" "}
             {websiteLinks.map((link) => (
               <>
                 <Link

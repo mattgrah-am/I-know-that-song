@@ -1,7 +1,6 @@
 import {
   Card,
   CircularProgress,
-  Container,
   TextField,
   Link as MaterialLink,
 } from "@mui/material";
@@ -16,35 +15,31 @@ export const DetailCatcher = () => {
     useContext<any>(ArtistDataContext);
 
   const getArtisList = () => {
-    if (artist.length >= 3) {
-      axios
-        .get(`http://localhost:3333/api/search/${artist}`)
-        .then((response) => {
-          setArtistList([...response.data]);
-        });
-    }
+    axios.get(`http://localhost:3333/api/search/${artist}`).then((response) => {
+      setArtistList([...response.data]);
+    });
   };
 
   return (
-    <Container>
+    <>
       <TextField
         margin="dense"
         required
         fullWidth
         id="artist"
-        label="Enter Artist / Band"
+        label="Search Artist / Band"
         name="name"
         variant="outlined"
         autoFocus
         onChange={(e) => {
           setArtist(e.target.value);
-          artist.length >= 3 && getArtisList();
+          artist.length >= 2 && getArtisList();
         }}
       />
-      {artist.length < 3 && artist.length >= 1 && (
+      {artist.length < 2 && artist.length > 0 && (
         <CircularProgress sx={{ padding: "2em 0" }} />
       )}
-      {artist.length >= 3 &&
+      {artist.length >= 2 &&
         artistList.map((artist: any, index: number) => (
           <MaterialLink
             component={RouterLink}
@@ -68,6 +63,6 @@ export const DetailCatcher = () => {
             </Card>
           </MaterialLink>
         ))}
-    </Container>
+    </>
   );
 };
