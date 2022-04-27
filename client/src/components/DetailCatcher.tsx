@@ -15,7 +15,7 @@ export const DetailCatcher = () => {
     useContext<any>(ArtistDataContext);
 
   const getArtisList = () => {
-    axios.get(`http://localhost:3333/api/search/${artist}`).then((response) => {
+    axios.get(`api/search/${artist}`).then((response) => {
       setArtistList([...response.data]);
     });
   };
@@ -49,12 +49,10 @@ export const DetailCatcher = () => {
             onClick={async () => {
               setQuestionPosition(0);
               setScore(0);
-              await axios
-                .get(`http://localhost:3333/api/data/${artist.name}`)
-                .then((response) => {
-                  setArtistData(response.data);
-                  setArtist(artist.name);
-                });
+              await axios.get(`api/data/${artist.name}`).then((response) => {
+                setArtistData(response.data);
+                setArtist(artist.name);
+              });
             }}
           >
             <Card variant="outlined" className="artist-search">
