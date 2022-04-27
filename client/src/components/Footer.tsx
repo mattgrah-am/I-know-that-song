@@ -1,10 +1,10 @@
-import { Container, Link } from "@mui/material";
+import { Link } from "@mui/material";
 import spotifyLogo from "../img/Spotify_Logo_RGB_Black.png";
 import { AboutModal } from "./AboutModal";
 
 export const Footer = () => {
   return (
-    <Container className="footer">
+    <div className="footer">
       <small>
         Created with 🖤 by&nbsp;
         <Link
@@ -24,9 +24,9 @@ export const Footer = () => {
         >
           <img src={spotifyLogo} className="spotify-logo" alt="" />
         </Link>
-        <sup>API</sup>.&nbsp;
-        <AboutModal />
+        <sup>API</sup>
       </small>
-    </Container>
+      <AboutModal />
+    </div>
   );
 };

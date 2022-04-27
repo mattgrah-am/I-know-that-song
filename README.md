@@ -44,10 +44,9 @@ todo
 
 todo
 
-## TODO & Bugs
+## Bugs
 
-- add an about modal in the footer to talk about the app and how it was made.
-- add a pause between each track
+- Lack of audio fade between tracks
 
 ## Future Updates
 
@@ -55,6 +54,7 @@ todo
 - Ability to sign in with Spotify
 - Ability to search by playlist
 - Leaderboard
+- Mobile Compatibility
 
 ## Style Guide
 

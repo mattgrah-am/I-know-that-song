@@ -114,11 +114,6 @@
 
 .footer {
   margin: 2em 0 1em 0;
-  display: flex;
-}
-
-.footer > small {
-  display: flex;
 }
 
 .spotify-logo {
