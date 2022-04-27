@@ -1,6 +1,8 @@
 const axios = require("axios");
 const qs = require("qs");
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
 interface ArtistData {
   options: string[];
