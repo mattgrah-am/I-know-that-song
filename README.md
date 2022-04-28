@@ -4,11 +4,16 @@ sei-anz-seifxr06 - Project 4 - [Live Version](https://iknowthatsong.mattgrah.am/
 
 ## Design Brief
 
-This is a simple web app that allows the end user to search for a band, which in turn generates a set of multiple choice questions where the end user is to guess the song whilst a short 30sec music clip is played. If the user guesses correctly the name of the song is highlighted green, if the user selects incorrectly the name of the selected guess is highlighted red.
+A simple web app that allows the end user to search for a band, which in turn generates a set of multiple choice questions where the end user is to guess the song whilst a short 30sec music clip is played. If the user guesses correctly the name of the song is highlighted green, if the user selects incorrectly the name of the selected guess is highlighted red.
 
 ### Screenshot
 
-todo
+- [Homepage](./readme-images/screenshots/iknowthatsong-start.png)
+- [Artist Search](./readme-images/screenshots/iknowthatsong-artist-search.png)
+- [Song Questions](./readme-images/screenshots/iknowthatsong-song-questions.png)
+- [Correct Song](./readme-images/screenshots/iknowthatsong-correct.png)
+- [Incorrect Song](./readme-images/screenshots/iknowthatsong-incorrect.png)
+- [Game End](./readme-images/screenshots/iknowthatsong-game-end.png)
 
 ### General Approach
 
@@ -16,7 +21,11 @@ todo - two paragraphs
 
 ### Challenges
 
-todo
+Spotify API
+
+- Getting artist / band top songs require getting the artist ID first
+- Not all artist / band have preview songs
+- Not all artist / band have artist / album images
 
 ## Installation
 
@@ -39,7 +48,11 @@ todo
 
 ## Wireframe Design
 
-todo
+- [Homepage](./readme-images/wireframes/wireframe-start.png)
+- [Song Questions](./readme-images/wireframes/wireframe-questions.png)
+- [Correct Song](./readme-images/wireframes/wireframe-correct.png)
+- [Incorrect Song](./readme-images/wireframes/wireframe-incorrect.png)
+- [Game End](./readme-images/wireframes/wireframe-game-end.png)
 
 ## Bugs
 
@@ -56,7 +69,7 @@ todo
 
 ## Style Guide
 
-Most of the styles are using Material UI's defaults.
+The for this web app are using Material UI's defaults.
 
 ### Font
 
