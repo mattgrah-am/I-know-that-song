@@ -28,6 +28,7 @@ Once the main structure of the app was completed and tested, it was working thro
 ### Challenges
 
 **Spotify API**
+
 A few of the challenges I faced while using the Spoify API were:
 
 - Getting artist / band top songs required getting the artist ID first
@@ -35,6 +36,7 @@ A few of the challenges I faced while using the Spoify API were:
 - Not all artist / band have artist / album images
 
 **API Keys**
+
 The original plan was to run this app completely in react without the need to use a back-end. Unfortunately this method exposes the secret API key, which forced the implimentation of a simply Express JS backend to handle the Spotify API call and sanitise the data.
 
 **Working with React**
