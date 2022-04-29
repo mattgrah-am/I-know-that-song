@@ -1,10 +1,10 @@
 import { Container } from "@mui/material";
 import { useContext } from "react";
-import { ArtistDataContext } from "../Context/artistDataContext";
+import { ArtistDataContext, DataContext } from "../Context/artistDataContext";
 import { DetailCatcher } from "./DetailCatcher";
 
 export const NotEnoughTracks = () => {
-  const { artistData } = useContext<any>(ArtistDataContext);
+  const { artistData } = useContext<DataContext>(ArtistDataContext);
 
   return (
     <Container>

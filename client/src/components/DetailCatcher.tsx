@@ -7,18 +7,23 @@ import {
 import axios from "axios";
 import { useState, useContext } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { ArtistDataContext } from "../Context/artistDataContext";
+import { ArtistDataContext, DataContext } from "../Context/artistDataContext";
 
 export const DetailCatcher = () => {
-  const [artistList, setArtistList] = useState<string[]>([]);
+  const [artistList, setArtistList] = useState<ArtistList[]>([]);
   const { setArtistData, setQuestionPosition, setScore, artist, setArtist } =
-    useContext<any>(ArtistDataContext);
+    useContext<DataContext>(ArtistDataContext);
 
   const getArtisList = () => {
     axios.get(`api/search/${artist}`).then((response) => {
       setArtistList([...response.data]);
     });
   };
+
+  interface ArtistList {
+    name: string;
+    image: string;
+  }
 
   return (
     <>
@@ -40,7 +45,7 @@ export const DetailCatcher = () => {
         <CircularProgress sx={{ padding: "2em 0" }} />
       )}
       {artist.length >= 2 &&
-        artistList.map((artist: any, index: number) => (
+        artistList.map((artist, index: number) => (
           <MaterialLink
             component={RouterLink}
             to="/play"

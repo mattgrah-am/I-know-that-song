@@ -3,7 +3,7 @@ import { useState } from "react";
 import spotifyLogo from "../img/Spotify_Logo_RGB_Black.png";
 
 export const AboutModal = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 

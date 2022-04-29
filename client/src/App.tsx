@@ -5,7 +5,7 @@ import { createTheme, Paper, ThemeProvider } from "@mui/material";
 import { Footer } from "./components/Footer";
 import { Game } from "./components/Game";
 import { Header } from "./components/Header";
-import { ArtistDataContext } from "./Context/artistDataContext";
+import { ArtistDataContext, ArtistData } from "./Context/artistDataContext";
 import { grey } from "@mui/material/colors";
 import { StartGame } from "./components/StartGame";
 
@@ -16,10 +16,14 @@ const theme = createTheme({
 });
 
 function App() {
-  const [artistData, setArtistData] = useState<any>([]);
+  const [artistData, setArtistData] = useState<[number, ArtistData[], string]>([
+    0,
+    [],
+    "",
+  ]);
   const [questionPosition, setQuestionPosition] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
-  const [artist, setArtist] = useState<any>("");
+  const [artist, setArtist] = useState<string>("");
 
   return (
     <div className="App">
@@ -45,6 +49,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<StartGame />} />
                 <Route path="/play" element={<Game />} />
+                <Route path="*" element={<StartGame />} />
               </Routes>
             </ArtistDataContext.Provider>
             <Footer />

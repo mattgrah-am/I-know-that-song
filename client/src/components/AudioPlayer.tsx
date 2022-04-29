@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
-import { ArtistDataContext } from "../Context/artistDataContext";
+import { ArtistDataContext, DataContext } from "../Context/artistDataContext";
 
 export const AudioPlayer = () => {
-  const { artistData, questionPosition } = useContext<any>(ArtistDataContext);
+  const { artistData, questionPosition } =
+    useContext<DataContext>(ArtistDataContext);
   const [autoPlay, setAutoPlay] = useState<boolean>(false);
   setTimeout(() => setAutoPlay(true), 1000);
   return (
