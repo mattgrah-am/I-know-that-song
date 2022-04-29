@@ -15,10 +15,6 @@ app.use(cors());
 app.set("trust proxy", 1);
 app.use(express.json()); // support json encoded bodies
 
-app.get("/api/test", (req: Request<any, any, any, any>, res: Response<any>) => {
-  res.json({ date: new Date().toString() });
-});
-
 app.get(
   "/api/data/:artist",
   (req: Request<any, any, any, any>, res: Response<any>) => {
@@ -40,7 +36,7 @@ app.get(
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "..", "client", "build")));
 
-  app.get("/*", (req, res) => {
+  app.get("/*", (req: Request<any, any, any, any>, res: Response<any>) => {
     res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
   });
 }
