@@ -57,6 +57,7 @@ export const DetailCatcher = () => {
               await axios.get(`api/data/${artist.name}`).then((response) => {
                 setArtistData(response.data);
                 setArtist(artist.name);
+                console.log(response.data);
               });
             }}
           >

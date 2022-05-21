@@ -10,7 +10,7 @@ export const AudioPlayer = () => {
   return (
     <ReactAudioPlayer
       autoPlay={autoPlay}
-      src={artistData[1][questionPosition].correct.preview}
+      src={artistData.trackData[questionPosition].correct.preview}
       volume={0.3}
       controls={true}
     />

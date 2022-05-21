@@ -10,7 +10,8 @@ export const GameOver = () => {
     <Container>
       <h3>
         <>
-          You scored {score} out of {artistData[0]} for {artistData[2]}.
+          You scored {score} out of {artistData.trackPreviewCount} for{" "}
+          {artistData.name}.
         </>
       </h3>
       <p>Play again?</p>

@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-interface ArtistData {
+interface TrackData {
   options: string[];
   correct: {
     song: string;
@@ -19,7 +19,7 @@ interface Track {
   album: { images: { url: string } };
 }
 
-interface ArtistList {
+export interface ArtistList {
   name: string;
   image: string;
 }
@@ -52,7 +52,7 @@ const getAuth = async () => {
   }
 };
 
-export const getArtistList = async (artist: string) => {
+export const getArtistList = async (artist: string): Promise<ArtistList[]> => {
   const access_token = await getAuth();
   if (artist.length >= 3) {
     try {
@@ -62,14 +62,12 @@ export const getArtistList = async (artist: string) => {
           Authorization: `Bearer ${access_token}`,
         },
       });
-      const artistList: ArtistList[] = [];
-      response.data.artists.items.forEach((artist: Artist) => {
-        artistList.push({
-          name: artist.name,
-          image: artist.images[0]?.url,
-        });
+      return response.data.artists.items.map(({ name, images }: Artist) => {
+        return {
+          name,
+          image: images[0]?.url,
+        };
       });
-      return artistList;
     } catch (error) {
       console.log(error);
     }
@@ -94,14 +92,13 @@ export const getArtistData = async (artist: string) => {
         Authorization: `Bearer ${access_token}`,
       },
     });
-    const artistData: ArtistData[] = [];
+    const trackData: TrackData[] = [];
     let trackPreviewCount: number = 0;
     let tracks = {};
-    const artistName: string = artist;
 
     res.data.tracks.forEach((track: Track) => {
       if (track.preview_url) {
-        artistData.push({
+        trackData.push({
           options: [],
           correct: {
             song: track.name,
@@ -113,7 +110,7 @@ export const getArtistData = async (artist: string) => {
       }
       tracks[track.name] = track.name;
     });
-    artistData.forEach((track) => {
+    trackData.forEach((track) => {
       let songList = { ...tracks };
       let keys = Object.keys(songList);
       const songOptions: string[] = [];
@@ -135,8 +132,12 @@ export const getArtistData = async (artist: string) => {
       }
     });
     // shuffle Artist data to mix up each question
-    artistData.sort(() => (Math.random() > 0.5 ? 1 : -1));
-    return [trackPreviewCount, artistData, artistName];
+    trackData.sort(() => (Math.random() > 0.5 ? 1 : -1));
+    return {
+      trackPreviewCount: trackPreviewCount,
+      trackData,
+      name: artist,
+    };
   } catch (error) {
     console.log(error);
   }

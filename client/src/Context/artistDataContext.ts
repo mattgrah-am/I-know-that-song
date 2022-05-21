@@ -1,8 +1,7 @@
 import { createContext } from "react";
-
 export interface DataContext {
-  artistData: [number, ArtistData[], string];
-  setArtistData: (artistData: [number, ArtistData[], string]) => void;
+  artistData: ArtistData;
+  setArtistData: (artistData: ArtistData) => void;
   questionPosition: number;
   setQuestionPosition: (questionPosition: number) => void;
   score: number;
@@ -11,6 +10,12 @@ export interface DataContext {
   setArtist: (artist: string) => void;
 }
 export interface ArtistData {
+  name: string;
+  trackData: TrackData[];
+  trackPreviewCount: number;
+}
+
+interface TrackData {
   options: string[];
   correct: CorrectSongDetails;
 }
@@ -22,7 +27,16 @@ interface CorrectSongDetails {
 }
 
 export const ArtistDataContext = createContext<DataContext>({
-  artistData: [0, [], ""],
+  artistData: {
+    name: "",
+    trackData: [
+      {
+        options: [],
+        correct: { song: "", preview: "", image: "" },
+      },
+    ],
+    trackPreviewCount: 0,
+  },
   setArtistData: () => {},
   questionPosition: 0,
   setQuestionPosition: () => {},

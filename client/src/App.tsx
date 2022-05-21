@@ -16,11 +16,16 @@ const theme = createTheme({
 });
 
 function App() {
-  const [artistData, setArtistData] = useState<[number, ArtistData[], string]>([
-    0,
-    [],
-    "",
-  ]);
+  const [artistData, setArtistData] = useState<ArtistData>({
+    name: "",
+    trackData: [
+      {
+        options: [""],
+        correct: { song: "", preview: "", image: "" },
+      },
+    ],
+    trackPreviewCount: 0,
+  });
   const [questionPosition, setQuestionPosition] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
   const [artist, setArtist] = useState<string>("");
