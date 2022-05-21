@@ -143,6 +143,6 @@ Build a production React App
 
 Start a production server:
 
-`npm run start:local`
+`npm run start`
 
 Head to localhost:3000. Both the API and the built React front end are now running on the same server. No code gets auto-updated in this mode.

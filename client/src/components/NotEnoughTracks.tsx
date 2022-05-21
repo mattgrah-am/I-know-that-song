@@ -9,7 +9,7 @@ export const NotEnoughTracks = () => {
   return (
     <Container>
       <p style={{ textAlign: "left" }}>
-        Unfortunately <strong>{artistData[2]}</strong> does not have enough
+        Unfortunately <strong>{artistData.name}</strong> does not have enough
         playable preview tracks on Spotify to play this game. Please select
         another Artist or Band:
       </p>

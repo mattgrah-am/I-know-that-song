@@ -8,9 +8,16 @@ export const Game = () => {
   const { artistData, questionPosition } =
     useContext<DataContext>(ArtistDataContext);
 
-  if (artistData[1] && artistData[0] < 3) return <NotEnoughTracks />;
+  if (artistData.trackData && artistData.trackPreviewCount < 3)
+    return <NotEnoughTracks />;
 
   return (
-    <>{questionPosition === artistData[0] ? <GameOver /> : <Questions />}</>
+    <>
+      {questionPosition === artistData.trackPreviewCount ? (
+        <GameOver />
+      ) : (
+        <Questions />
+      )}
+    </>
   );
 };

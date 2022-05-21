@@ -4,7 +4,12 @@ if (process.env.NODE_ENV !== "production") {
 
 import express, { Request, Response } from "express";
 import path from "path";
-import { getArtistData, getArtistList } from "./spotify";
+import {
+  ArtistData,
+  ArtistList,
+  getArtistData,
+  getArtistList,
+} from "./spotify";
 
 const PORT =
   process.env.PORT || (process.env.NODE_ENV === "production" && 3000) || 3333;
@@ -17,7 +22,7 @@ app.use(express.json()); // support json encoded bodies
 
 app.get(
   "/api/data/:artist",
-  (req: Request<any, any, any, any>, res: Response<any>) => {
+  (req: Request<{ artist: string }>, res: Response<ArtistData>) => {
     getArtistData(req.params.artist).then((tracks) => {
       res.json(tracks);
     });
@@ -26,7 +31,7 @@ app.get(
 
 app.get(
   "/api/search/:artist",
-  (req: Request<any, any, any, any>, res: Response<any>) => {
+  (req: Request<{ artist: string }>, res: Response<ArtistList[]>) => {
     getArtistList(req.params.artist).then((artists) => {
       res.json(artists);
     });
@@ -36,7 +41,7 @@ app.get(
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "..", "client", "build")));
 
-  app.get("/*", (req: Request<any, any, any, any>, res: Response<any>) => {
+  app.get("/*", (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
   });
 }

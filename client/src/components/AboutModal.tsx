@@ -91,8 +91,8 @@ export const AboutModal = () => {
               General Assembly's Software Engineering Immersive Online (Flex)
             </Link>
             course's final project. It uses{" "}
-            {websiteLinks.map((link) => (
-              <>
+            {websiteLinks.map((link, index) => (
+              <div key={index}>
                 <Link
                   underline="hover"
                   href={link.url}
@@ -102,7 +102,7 @@ export const AboutModal = () => {
                   {link.name}
                 </Link>
                 {", "}
-              </>
+              </div>
             ))}{" "}
             & the{" "}
             <Link
@@ -134,8 +134,8 @@ export const AboutModal = () => {
           </p>
           <hr />
           <h3 style={{ margin: "0.5em 0" }}>Learn more about the creator.</h3>
-          {mattsLinks.map((link) => (
-            <>
+          {mattsLinks.map((link, index) => (
+            <div key={index}>
               <Link
                 underline="hover"
                 href={link.url}
@@ -145,7 +145,7 @@ export const AboutModal = () => {
                 {link.name}
               </Link>
               {" | "}
-            </>
+            </div>
           ))}
           <Link
             underline="hover"
