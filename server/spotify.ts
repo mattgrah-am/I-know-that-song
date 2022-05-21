@@ -4,6 +4,12 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
+export interface ArtistData {
+  name: string;
+  trackData: TrackData[];
+  trackPreviewCount: number;
+}
+
 interface TrackData {
   options: string[];
   correct: {
