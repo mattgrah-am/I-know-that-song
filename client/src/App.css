@@ -26,7 +26,8 @@
   padding: 0 0.25em;
 }
 
-.album-art {
+.album-art,
+.cover-art {
   width: 100px;
   margin-right: 0.5em;
 }
@@ -137,4 +138,17 @@ p {
 
 sup {
   font-size: 0.75em;
+}
+
+@media only screen and (max-width: 400px) {
+  .logo {
+    font-size: 2.75em;
+  }
+  .album-art {
+    width: 75px;
+    margin-right: 0.25em;
+  }
+  .cover-art {
+    display: none;
+  }
 }

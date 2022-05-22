@@ -36,7 +36,12 @@ function App() {
         <Router>
           <Paper
             elevation={6}
-            sx={{ maxWidth: 480, opacity: 0.9, textAlign: "center" }}
+            sx={{
+              opacity: 0.9,
+              textAlign: "center",
+              maxWidth: "480",
+              margin: "0.5em",
+            }}
           >
             <Header />
             <ArtistDataContext.Provider
@@ -53,7 +58,12 @@ function App() {
             >
               <Routes>
                 <Route path="/" element={<StartGame />} />
-                <Route path="/play" element={<Game />} />
+                <Route
+                  path="/play"
+                  element={
+                    artistData.name.length > 0 ? <Game /> : <StartGame />
+                  }
+                />
                 <Route path="*" element={<StartGame />} />
               </Routes>
             </ArtistDataContext.Provider>
