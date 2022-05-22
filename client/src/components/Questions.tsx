@@ -34,7 +34,7 @@ export const Questions = () => {
                 <img
                   src={artistData.trackData[questionPosition].correct.image}
                   alt=""
-                  className="album-art"
+                  className="cover-art"
                 />
                 <div>
                   <h2 className="artist">{artistData.name}</h2>
